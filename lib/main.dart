@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+// MINHAS IMPORTAÇÕES DE PAGINA
 import 'package:flutterfood/pages/auth/login.dart';
+import 'package:flutterfood/pages/auth/register.dart';
 
 void main() => runApp(FlutterFoodApp());
 
@@ -16,7 +18,11 @@ class FlutterFoodApp extends StatelessWidget {
         accentColor: Colors.black,
         brightness: Brightness.dark,
       ),
-      home: Login(),
+      initialRoute: '/login',
+      routes: <String, WidgetBuilder>{
+        '/login': (context) => Login(),
+        '/register': (context) => Register(),
+      },
     );
   }
 }

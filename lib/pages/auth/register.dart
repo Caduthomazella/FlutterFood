@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-//MINHAS PAGINAS IMPORTADAS
-import 'package:flutterfood/pages/auth/register.dart';
+// MINHAS PAGINAS IMPORTADAS
+import 'package:flutterfood/pages/auth/login.dart';
 import 'package:flutterfood/pages/auth/widgets/logo.dart';
 
-class Login extends StatelessWidget {
+class Register extends StatelessWidget {
   double _deviceWidth;
   double _deviceHeight;
 
@@ -33,7 +33,7 @@ class Login extends StatelessWidget {
           Container(height: 10),
           _loginButton(context),
           Container(height: 30),
-          _textRegister(context),
+          _textToLogin(context),
         ],
       ),
     );
@@ -55,6 +55,7 @@ class Login extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
+          _inputName(context),
           _inputEmail(context),
           _inputPassword(context),
         ],
@@ -62,10 +63,32 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _inputEmail(context) {
+  Widget _inputName(context) {
     return TextFormField(
       autocorrect: false,
       autofocus: true,
+      cursorColor: Theme.of(context).primaryColor,
+      style: TextStyle(color: Theme.of(context).primaryColor),
+      decoration: InputDecoration(
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor),
+          ),
+          contentPadding: EdgeInsets.all(10),
+          hintText: 'Nome',
+          hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
+    );
+  }
+
+  Widget _inputEmail(context) {
+    return TextFormField(
+      autocorrect: false,
+      autofocus: false,
       cursorColor: Theme.of(context).primaryColor,
       style: TextStyle(color: Theme.of(context).primaryColor),
       decoration: InputDecoration(
@@ -100,7 +123,7 @@ class Login extends StatelessWidget {
             borderSide: BorderSide(color: Theme.of(context).primaryColor),
           ),
           contentPadding: EdgeInsets.all(10),
-          hintText: 'Password',
+          hintText: 'Senha',
           hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
     );
   }
@@ -110,24 +133,24 @@ class Login extends StatelessWidget {
       width: _deviceWidth,
       child: MaterialButton(
         onPressed: () {
-          print('Login');
+          print('Registrando');
         },
         color: Theme.of(context).primaryColor,
-        child: Text('Login'),
+        child: Text('Cadastrar'),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
     );
   }
 
-  Widget _textRegister(context) {
+  Widget _textToLogin(context) {
     return GestureDetector(
       onTap: () {
-        print('Redirecionado Pagina REGISTER');
-        //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
-        Navigator.pushNamed(context, '/register');
+        print('Redirecionado Pagina LOGIN');
+        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+        Navigator.pushReplacementNamed(context, '/login');
       },
       child: Text(
-        'Cadastrar-se',
+        'Já possui um Login?',
         style: TextStyle(
           color: Theme.of(context).primaryColor,
           fontSize: 18.2,
