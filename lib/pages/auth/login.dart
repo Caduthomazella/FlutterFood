@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key key}) : super(key: key);
+  double _deviceWidth;
+  double _deviceHeight;
 
   @override
   Widget build(BuildContext context) {
+    _deviceWidth = MediaQuery.of(context).size.width;
+    _deviceHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
@@ -15,11 +19,17 @@ class Login extends StatelessWidget {
 
   Widget _LoginPageUI(context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.10),
       child: Column(
         children: <Widget>[
+          Container(height: 50),
           _headingAuth(),
+          Container(height: 20),
           _formLogin(context),
-          _loginButton(),
+          Container(height: 10),
+          _loginButton(context),
+          Container(height: 30),
+          _textRegister(context),
         ],
       ),
     );
@@ -39,12 +49,13 @@ class Login extends StatelessWidget {
 
   Widget _formLogin(context) {
     return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(143, 148, 251, 1),
+            color: Color.fromRGBO(143, 148, 251, 0.7),
             blurRadius: 20,
             offset: Offset(0, 10),
           ),
@@ -102,7 +113,30 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _loginButton() {
-    return Container();
+  Widget _loginButton(context) {
+    return Container(
+      width: _deviceWidth,
+      child: MaterialButton(
+        onPressed: () {
+          print('Login');
+        },
+        color: Theme.of(context).primaryColor,
+        child: Text('Login'),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      ),
+    );
+  }
+
+  Widget _textRegister(context) {
+    return GestureDetector(
+      onTap: () => print('voce foi  pra outra pagina'),
+      child: Text(
+        'Cadastrar-se',
+        style: TextStyle(
+          color: Theme.of(context).primaryColor,
+          fontSize: 18.2,
+        ),
+      ),
+    );
   }
 }
